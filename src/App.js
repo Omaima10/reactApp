@@ -22,6 +22,7 @@ class App extends React.Component{
   
   }
   handleInput(t){
+    console.log("test")
     this.setState({
       CurrentTsak: {
         text: t.target.value,
