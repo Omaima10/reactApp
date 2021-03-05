@@ -11,7 +11,7 @@ class App extends React.Component{
     super(props);
     this.state={
       tasks:[],
-      CurrentTsak:{
+      currentTsak:{
         text: '',
         key: ''
       }
@@ -21,25 +21,24 @@ class App extends React.Component{
     this.deleteTask = this.deleteTask.bind(this);
   
   }
-  handleInput(t){
-    console.log("test")
+  handleInput(event){
     this.setState({
-      CurrentTsak: {
-        text: t.target.value,
+      currentTsak: {
+        text: event.target.value,
         key: Date.now()
       }
     })
   }
-  addTask(t){
+  addTask(event){
     //to prevent the default load of the page when we click the button add
-    t.preventDefault();
-    const newTask= this.state.CurrentTsak;
+    event.preventDefault();
+    const newTask= this.state.currentTsak;
     if(newTask.text !==""){ 
       const tasks=[...this.state.tasks, newTask]
       //update state with new task
       this.setState({
         tasks:tasks,
-        CurrentTsak:{
+        currentTsak:{
           text:'',
           key:''
           }
@@ -56,13 +55,11 @@ class App extends React.Component{
   render(){
     return (
     <div className="DoApp">
-    <header>
       <p id="p1">Todo List</p>
       <form id="todoF" onSubmit={this.addTask}>
-        <input type="text" placeholder="Create Task" value={this.state.CurrentTsak.text} onChange={this.handleInput} />
+        <input type="text" placeholder="Create Task" value={this.state.currentTsak.text} onChange={this.handleInput} />
         <button type="submit"> Add </button>
       </form>
-    </header>
     <ListTasks tasks={this.state.tasks} deleteTask={this.deleteTask} />
     </div>
     );

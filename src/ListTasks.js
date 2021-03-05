@@ -3,8 +3,8 @@ import './ListTasks.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
  function ListTasks(props){
-     const tasks = props.tasks;
-     console.log(props.tasks)
+     const {deleteTask, tasks} = props;
+     console.log(tasks)
      return(
          <div>
             {tasks.map(item =>
@@ -12,7 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
                     <p> {item.text} 
                     <span>
                         <FontAwesomeIcon className="icons" icon="trash"  
-                        onClick={ () => props.deleteTask(item.key)
+                        onClick={ () => deleteTask(item.key)
                         }/>
                     </span>
                     </p>
