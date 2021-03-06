@@ -1,6 +1,5 @@
 import './App.css';
 import React from 'react'
-import TodoF from './TodoF'
 import TodoList from './TodoList'
 
 

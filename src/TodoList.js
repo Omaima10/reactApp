@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import TodoF from './TodoF';
+import TodoForm from './TodoForm';
 import './TodoList.css';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
@@ -9,18 +9,17 @@ library.add(faTrash);
 
 function TodoList(){
     const [tasks, setTasks] = useState([]);
-    const addTask = t =>{
-        const newtask= [t, ...tasks];
-        setTasks(newtask);
+    const addTask = newTask =>{
+        setTasks([newTask, ...tasks]);
     }
     const deleteTask = key =>{
-        const taskTodelete = [...tasks].filter(task => task.key !== key);
-        setTasks(taskTodelete);
+        const remainingTasks = [...tasks].filter(task => task.key !== key);
+        setTasks(remainingTasks);
       }
 
     return(
         <div>
-            <TodoF onSubmit={addTask}/>
+            <TodoForm onSubmit={addTask}/>
             <div>
                 {tasks.map(item =>
                     <div className="list" key={item.key}> 

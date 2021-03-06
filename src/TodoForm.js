@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
-function TodoF(props){
-    const [input, setText] = useState('');
+function TodoForm(props){
+    const [currentTask, setCurrentTask] = useState('');
 
     const handleInput = event =>{
-        setText(event.target.value);
+        setCurrentTask(event.target.value);
     };
 
     const handleSubmit = event =>{
@@ -12,9 +12,9 @@ function TodoF(props){
 
         props.onSubmit({
             key: Date.now(),
-            text: input
+            text: currentTask
         });
-        setText('');
+        setCurrentTask('');
     };
 
     return(
@@ -22,7 +22,7 @@ function TodoF(props){
             <form id="todoF" onSubmit={handleSubmit} > 
                 <input type='text'
                 placeholder='Create a task'
-                value={input} 
+                value={currentTask} 
                 onChange={handleInput} 
                />
                 <button type="submit">  Add </button>
@@ -31,4 +31,4 @@ function TodoF(props){
     )
 }
 
-export default TodoF;
+export default TodoForm;
