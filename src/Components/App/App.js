@@ -7,7 +7,7 @@ import UserList from "../User/userList";
 function App() {
   const [tasks, setTasks] = useState({});
   const [users, setUsers] = useState([]);
-  const [selectedUser, setSelectedUser] = useState(null);
+  const [selectedUser, setSelectedUser] = useState("");
 
   const addUsers = (userName) => {
     const id = users.length;
@@ -26,15 +26,6 @@ function App() {
     setTasks({ ...tasks, [user.id]: [...(tasks[user.id] || []), text] });
   };
 
-  const getSelectedUsersTasks = () => {
-    const user = selectedUser;
-    if (!user) return;
-
-    const userTasks = tasks[user.id] || {};
-
-    return { user, userTasks };
-  };
-
   return (
     <div className="DoApp">
       <h1 id="p1">To-do List</h1>
@@ -43,14 +34,17 @@ function App() {
         <UsedForms name="Task" action={addTasks} label="Add Task" />
       </div>
       <div>
-        <div className="ListsDiplay">
+        <div>
           <UserList
             users={users}
             selectUser={selectUser}
             selectedUser={selectedUser}
           />
           <div>
-            <TasksList content={getSelectedUsersTasks()} />
+            <TasksList
+              user={selectedUser}
+              tasks={tasks[selectedUser.id] || {}}
+            />
           </div>
         </div>
       </div>

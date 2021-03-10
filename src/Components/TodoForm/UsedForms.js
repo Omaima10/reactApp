@@ -19,7 +19,7 @@ const UsedForms = ({ action, label, name }) => {
 
   return (
     <div>
-      <label for="user">{name}</label>
+      <label>{name}</label>
       <form id="todoF" onSubmit={handleSubmit}>
         <input
           type="text"

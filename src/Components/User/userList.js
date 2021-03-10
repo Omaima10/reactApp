@@ -13,7 +13,7 @@ const userList = ({ users, selectUser, selectedUser }) => {
                   ? "selected user"
                   : "user"
               }
-              key={index}
+              key={user.id}
               onClick={() => selectUser(user)}
             >
               {user.userName}
