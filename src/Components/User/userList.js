@@ -1,26 +1,32 @@
 import React from "react";
-import "../User/userList.css";
 
-const userList = ({ users, selectUser, selectedUser }) => {
+const userList = ({ users, selectUser }) => {
+  if (users.length === 0) return null;
+
+  const handleChange = ({ target: { value } }) => {
+    selectUser(users[value]);
+  };
+
   return (
-    <div>
-      <ul>
+    <div className="w-50 " align="center">
+      {" "}
+      <br />
+      <select
+        class="custom-select custom-select-lg bg-secondary text-center"
+        onChange={handleChange}
+      >
+        <option class=" bg-light" selected disabled>
+          Choose User
+        </option>
         {users.map((user, index) => {
           return (
-            <li
-              className={
-                selectedUser && user.id === selectedUser.id
-                  ? "selected user"
-                  : "user"
-              }
-              key={user.id}
-              onClick={() => selectUser(user)}
-            >
+            <option class=" bg-light" value={user.id} key={user.id}>
               {user.userName}
-            </li>
+            </option>
           );
         })}
-      </ul>
+      </select>
+      <br />
     </div>
   );
 };

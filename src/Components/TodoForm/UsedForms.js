@@ -18,16 +18,20 @@ const UsedForms = ({ action, label, name }) => {
   };
 
   return (
-    <div>
-      <label>{name}</label>
-      <form id="todoF" onSubmit={handleSubmit}>
+    <div class=" form-group row h-100 justify-content-center align-items-center">
+      <form className="w-50" onSubmit={handleSubmit}>
         <input
           type="text"
-          className="input"
+          className="form-control"
           onChange={handleChange}
           value={value}
+          placeholder={name}
         />
-        <button>{label}</button>
+        <div>
+          <button className="btn btn-dark font-italic font-weight-bold">
+            {label}
+          </button>
+        </div>
       </form>
     </div>
   );
