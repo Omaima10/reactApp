@@ -1,64 +1,33 @@
-import React, { useState } from "react";
+import React from "react";
 import TasksList from "../Tasks/TasksList";
 import UsedForms from "../TodoForm/UsedForms";
 import UserList from "../User/userList";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { DataProvider } from "../ContextAPI/DataProvider";
 
 function App() {
-  const [tasks, setTasks] = useState({});
-  const [users, setUsers] = useState([]);
-  const [selectedUser, setSelectedUser] = useState(null);
-
-  const addUsers = (userName) => {
-    const id = users.length;
-    setUsers([...users, { id, userName }]);
-  };
-  const selectUser = (user) => {
-    setSelectedUser(user);
-  };
-
-  const addTasks = (text) => {
-    const user = selectedUser;
-    if (!user) {
-      alert("Please select a user to add a Task !");
-      return;
-    }
-    setTasks({ ...tasks, [user.id]: [...(tasks[user.id] || []), text] });
-  };
-
-  const getSelectedUsersTasks = () => {
-    const user = selectedUser;
-    if (!user) return;
-
-    const userTasks = tasks[user.id] || {};
-
-    return { user, userTasks };
-  };
-
   return (
-    <div className="container">
-      <h1 class=" text-center display-4 font-italic font-weight-bold text-primary">
-        To-do List
-      </h1>
-      <div className=" card-body p-4 bg-primary">
-        <div className="bg-secondary text-dark card-body  text-center">
-          <UsedForms name="User" action={addUsers} label="Add User" />
-          <UsedForms name="Task" action={addTasks} label="Add Task" />
-        </div>
-        <div>
+    <DataProvider>
+      <div className="container">
+        <h1 class=" text-center display-4 font-italic font-weight-bold text-primary">
+          To-do List
+        </h1>
+        <div className=" card-body p-4 bg-primary">
+          <div className="bg-secondary text-dark card-body  text-center">
+            <UsedForms name="User" action="addUsers" label="Add User" />
+            <UsedForms name="Task" action="addTasks" label="Add Task" />
+          </div>
           <div>
-            <UserList
-              users={users}
-              selectUser={selectUser}
-              selectedUser={selectedUser}
-            />
-            <div className="card-body flex-row-reverse ">
-              <TasksList content={getSelectedUsersTasks()} />
+            <div>
+              <UserList />
+              <div className="card-body flex-row-reverse ">
+                <TasksList />
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </DataProvider>
   );
 }
 
