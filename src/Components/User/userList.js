@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
+import { DataContext } from "../../state/DataProvider";
 
-const userList = ({ users, selectUser, selectedUser }) => {
+const UserList = () => {
+  const {
+    state,
+    state: { tasks, users },
+    setState,
+  } = useContext(DataContext);
+
   if (users.length === 0) return null;
 
-  const handleChange = ({ target: { value } }) => {
-    selectUser(users[value]);
+  const handleChange = ({ target: { value: id } }) => {
+    setState({
+      ...state,
+      selectedUser: { ...users[id] },
+      selectedTasksUser: [...(tasks[id] || [])],
+    });
   };
 
   return (
@@ -15,12 +26,12 @@ const userList = ({ users, selectUser, selectedUser }) => {
         class="custom-select custom-select-lg bg-secondary text-center"
         onChange={handleChange}
       >
-        <option class=" bg-light" selected>
+        <option class=" bg-light" selected disabled>
           Choose User
         </option>
         {users.map((user, index) => {
           return (
-            <option class=" bg-light" value={user.id} key={index}>
+            <option class=" bg-light" value={user.id} key={user.id}>
               {user.userName}
             </option>
           );
@@ -31,4 +42,4 @@ const userList = ({ users, selectUser, selectedUser }) => {
   );
 };
 
-export default userList;
+export default UserList;
