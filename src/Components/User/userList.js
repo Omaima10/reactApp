@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
+import { DataContext } from "../../state/DataProvider";
 
-const userList = ({ users, selectUser }) => {
+const UserList = () => {
+  const {
+    state,
+    state: { tasks, users },
+    setState,
+  } = useContext(DataContext);
+
   if (users.length === 0) return null;
 
-  const handleChange = ({ target: { value } }) => {
-    selectUser(users[value]);
+  const handleChange = ({ target: { value: id } }) => {
+    setState({
+      ...state,
+      selectedUser: { ...users[id] },
+      selectedTasksUser: [...(tasks[id] || [])],
+    });
   };
 
   return (
@@ -31,4 +42,4 @@ const userList = ({ users, selectUser }) => {
   );
 };
 
-export default userList;
+export default UserList;
