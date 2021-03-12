@@ -78,8 +78,8 @@ Make sure you try and solve your code bugs by yourself first before searching th
 
   **[FINAL RESULT](https://gitlab.com/xhub-org/knowledge-base/onboarding/-/tree/a61b6bfd3c9c768d23ebaf34fcc075cb4f74acb2/frontEnd/task-list)**
 
-- [ ] Implement the Context Api to share data between your app's components.
-- [ ] Store your state files in a separate directory.
+- [x] Implement the Context Api to share data between your app's components.
+- [x] Store your state files in a separate directory.
 
 - ## 5- Hooks API useReducer
 
