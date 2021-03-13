@@ -3,7 +3,8 @@ import TasksList from "../Tasks/TasksList";
 import UsedForms from "../TodoForm/UsedForms";
 import UserList from "../User/userList";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { DataProvider } from "../ContextAPI/DataProvider";
+import * as actionTypes from "../../state/actionTypes";
+import DataProvider from "../../state/DataProvider";
 
 function App() {
   return (
@@ -14,8 +15,16 @@ function App() {
         </h1>
         <div className=" card-body p-4 bg-primary">
           <div className="bg-secondary text-dark card-body  text-center">
-            <UsedForms name="User" action="addUsers" label="Add User" />
-            <UsedForms name="Task" action="addTasks" label="Add Task" />
+            <UsedForms
+              name="User"
+              actionType={actionTypes.add_User}
+              label="Add User"
+            />
+            <UsedForms
+              name="Task"
+              actionType={actionTypes.add_Task}
+              label="Add Task"
+            />
           </div>
           <div>
             <div>
