@@ -61,25 +61,25 @@ Make sure you try and solve your code bugs by yourself first before searching th
 
 - [x] Use [functional components](https://reactjs.org/docs/components-and-props.html) instead of class component.
 - [x] Use [useState hook](https://reactjs.org/docs/hooks-reference.html#usestate) to save your app state.
-- [ ] Create a second form input for users.
-- [ ] User and Task form inputs shouldn't accept an empty value on submit.
-- [ ] Each task should be bound to a single user.
-- [ ] One user can have multiple tasks.
-- [ ] Your app should only display tasks of the selected user.
-- [ ] Make sure you store each component in its own directory inside the `src/components/` directory.
+- [x] Create a second form input for users.
+- [x] User and Task form inputs shouldn't accept an empty value on submit.
+- [x] Each task should be bound to a single user.
+- [x] One user can have multiple tasks.
+- [x] Your app should only display tasks of the selected user.
+- [x] Make sure you store each component in its own directory inside the `src/components/` directory.
 
 - ## 3- Bootstrap
 
   **[FINAL RESULT](https://gitlab.com/xhub-org/knowledge-base/onboarding/-/tree/9690c83185c906e583130eb69520ef580262c62b/frontEnd/task-list)**
 
-- [ ] Make a better UI/UX using [Bootstrap](https://getbootstrap.com/docs/4.5/getting-started/introduction/).
+- [x] Make a better UI/UX using [Bootstrap](https://getbootstrap.com/docs/4.5/getting-started/introduction/).
 
 - ## 4- React Context-Api
 
   **[FINAL RESULT](https://gitlab.com/xhub-org/knowledge-base/onboarding/-/tree/a61b6bfd3c9c768d23ebaf34fcc075cb4f74acb2/frontEnd/task-list)**
 
-- [ ] Implement the Context Api to share data between your app's components.
-- [ ] Store your state files in a separate directory.
+- [x] Implement the Context Api to share data between your app's components.
+- [x] Store your state files in a separate directory.
 
 - ## 5- Hooks API useReducer
 
