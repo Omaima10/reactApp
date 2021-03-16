@@ -21,36 +21,6 @@ const UsedForms = ({ actionType, label, name }) => {
     return true;
   };
 
-  const {
-    state,
-    state: { tasks, users, selectedUser },
-    setState,
-  } = useContext(DataContext);
-
-  const actionObj = {
-    addTasks: (text) => {
-      const user = selectedUser;
-      if (!user) {
-        alert("please select user");
-        return false;
-      }
-      setState({
-        ...state,
-        tasks: {
-          ...tasks,
-          [user.id]: [...(tasks[user.id] || []), text],
-        },
-        selectedTasksUser: [...(tasks[user.id] || []), text],
-      });
-      return true;
-    },
-    addUsers: (userName) => {
-      const id = users.length;
-      setState({ ...state, users: [...users, { id, userName }] });
-      return true;
-    },
-  };
-
   const handleSubmit = (event) => {
     event.preventDefault();
     if (!value) {
