@@ -1,17 +1,13 @@
-import React, { useState, createContext } from "react";
+import React, { useReducer } from "react";
+import reducer from "./reducers";
+import { initialState, Store } from "./store";
 
-export const DataContext = createContext();
-export const DataProvider = ({ children }) => {
-  const [state, setState] = useState({
-    tasks: {},
-    users: [],
-    selectedUser: null,
-    selectedTasksUser: [],
-  });
+const DataProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
-    <DataContext.Provider value={{ state, setState }}>
-      {children}
-    </DataContext.Provider>
+    <Store.Provider value={{ state, dispatch }}>{children}</Store.Provider>
   );
 };
+
+export default DataProvider;

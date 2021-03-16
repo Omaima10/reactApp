@@ -1,21 +1,15 @@
-import React, { useContext } from "react";
-import { DataContext } from "../../state/DataProvider";
+import React from "react";
+import { UserSelector, UserDispatch } from "../../state/store";
+import * as actionCreators from "../../state/actionCreators";
 
 const UserList = () => {
-  const {
-    state,
-    state: { tasks, users },
-    setState,
-  } = useContext(DataContext);
+  const dispatch = UserDispatch();
+  const users = UserSelector("users");
 
   if (users.length === 0) return null;
 
-  const handleChange = ({ target: { value: id } }) => {
-    setState({
-      ...state,
-      selectedUser: { ...users[id] },
-      selectedTasksUser: [...(tasks[id] || [])],
-    });
+  const handleChange = ({ target: { value: userId } }) => {
+    dispatch(actionCreators.selectUser(userId));
   };
 
   return (

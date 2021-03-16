@@ -1,37 +1,24 @@
-import React, { useState, useContext } from "react";
-import { DataContext } from "../../state/DataProvider";
+import React, { useState } from "react";
+import * as actionTypes from "../../state/actionTypes";
+import * as actionCreators from "../../state/actionCreators";
+import { UserSelector, UserDispatch } from "../../state/store";
 
-const UsedForms = ({ action, label, name }) => {
+const UsedForms = ({ actionType, label, name }) => {
   const [value, setValue] = useState("");
+  const dispatch = UserDispatch();
+  const selectedUser = UserSelector("selectedUser");
 
-  const {
-    state,
-    state: { tasks, users, selectedUser },
-    setState,
-  } = useContext(DataContext);
-
-  const actionObj = {
-    addTasks: (text) => {
-      const user = selectedUser;
-      if (!user) {
-        alert("please select user");
-        return false;
-      }
-      setState({
-        ...state,
-        tasks: {
-          ...tasks,
-          [user.id]: [...(tasks[user.id] || []), text],
-        },
-        selectedTasksUser: [...(tasks[user.id] || []), text],
-      });
-      return true;
-    },
-    addUsers: (userName) => {
-      const id = users.length;
-      setState({ ...state, users: [...users, { id, userName }] });
-      return true;
-    },
+  const addTask = (taskText) => {
+    if (!selectedUser) {
+      alert("please select user");
+      return false;
+    }
+    dispatch(actionCreators.addTask(taskText));
+    return true;
+  };
+  const addUser = (userName) => {
+    dispatch(actionCreators.addUser(userName));
+    return true;
   };
 
   const handleSubmit = (event) => {
@@ -41,8 +28,7 @@ const UsedForms = ({ action, label, name }) => {
       return;
     }
     const actionPassed =
-      action === "addTask" || "addUser" ? actionObj[action](value) : false;
-
+      actionType === actionTypes.add_Task ? addTask(value) : addUser(value);
     if (actionPassed) setValue("");
   };
 

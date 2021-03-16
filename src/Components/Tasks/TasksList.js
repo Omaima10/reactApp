@@ -1,10 +1,9 @@
-import React, { useContext } from "react";
-import { DataContext } from "../../state/DataProvider";
+import React from "react";
+import { UserSelector } from "../../state/store";
 
 const TasksList = () => {
-  const {
-    state: { selectedTasksUser, selectedUser },
-  } = useContext(DataContext);
+  const selectedUser = UserSelector("selectedUser");
+  const tasks = UserSelector("tasks");
 
   if (!selectedUser)
     return (
@@ -12,7 +11,7 @@ const TasksList = () => {
         Add or Select a User to fill your to-do List with Tasks{" "}
       </h2>
     );
-  if (selectedTasksUser.length === 0)
+  if (!tasks.hasOwnProperty(selectedUser.id))
     return (
       <h2 class="text-center font-weight-normal font-italic">Add your Tasks</h2>
     );
@@ -20,7 +19,7 @@ const TasksList = () => {
   return (
     <div className="w-50">
       <ul>
-        {selectedTasksUser.map((task, index) => {
+        {tasks[selectedUser.id].map((task, index) => {
           return (
             <li
               className="list-group-item list-group-item-primary w-50"
